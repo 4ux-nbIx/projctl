@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
 
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>projctl</ToolCommandName>
@@ -10,12 +10,12 @@
     <Description>A DotNet global tool based on MSBuild to manipulate source code projects.</Description>
     <Copyright>Copyright Roman Novitskiy 2020</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes>Changed get-projects command option names and added --recursive option.</PackageReleaseNotes>
+    <PackageReleaseNotes>Update to .NET 5.0</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/4ux-nbIx/projctl</PackageProjectUrl>
     <RepositoryUrl>https://github.com/4ux-nbIx/projctl</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dotnet cli dotnet-cli global tool msbuild</PackageTags>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
