@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/4ux-nbIx/projctl</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dotnet cli dotnet-cli global tool msbuild</PackageTags>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

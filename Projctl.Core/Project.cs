@@ -38,14 +38,15 @@
 
         public bool ContainsItems(CompositeGlob items, string[] projectItemTypes = null)
         {
-            IEnumerable<ProjectItem> projectItems = _project.Items;
+            IList<(string Type, string Path)> projectItems = _project.Items.Select(x => (x.ItemType, x.GetFullPath())).ToList();
+            projectItems.Add(("ProjectFile", _project.FullPath));
 
             if (projectItemTypes != null && projectItemTypes.Length > 0)
             {
-                projectItems = projectItems.Where(i => projectItemTypes.Contains(i.ItemType));
+                projectItems = projectItems.Where(i => projectItemTypes.Contains(i.Type)).ToList();
             }
 
-            return projectItems.Any(i => items.IsMatch(i.GetFullPath()));
+            return projectItems.Any(i => items.IsMatch(i.Path));
         }
 
         public ICollection<ProjectItem> GetItems(string itemType) => _project.GetItems(itemType);
