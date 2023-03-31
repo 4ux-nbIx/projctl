@@ -32,7 +32,7 @@ namespace Projctl.Test
         private Parser _parser;
 
         protected string Error => _console.Error.ToString();
-        protected string[] Out => _console.Out.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+        protected string[] Out => _console.Out.ToString()!.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
         protected string OutString => _console.Out.ToString();
 
         [AssemblyInitialize]

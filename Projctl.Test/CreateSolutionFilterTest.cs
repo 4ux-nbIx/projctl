@@ -2,6 +2,7 @@
 {
     #region Namespace Imports
 
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -46,13 +47,13 @@
             var fileName = Path.Combine(TestSolutionDirectory, "Test.slnf");
             await InvokeAsync($"create-solution-filter {projectGlob} --solution {TestSolution} --destination {fileName}");
 
-            var json = File.ReadAllText(fileName);
+            var json = await File.ReadAllTextAsync(fileName);
             var solutionFilterFile = JsonConvert.DeserializeObject<SolutionFilterFile>(json);
 
             Verify(results, solutionFilterFile, Path.GetDirectoryName(fileName));
         }
 
-        private static void Verify(string[] results, SolutionFilterFile solutionFilterFile, string directory)
+        private static void Verify(IReadOnlyCollection<string> results, SolutionFilterFile solutionFilterFile, string directory)
         {
             solutionFilterFile.SolutionFilter.Should().NotBeNull();
 
@@ -61,8 +62,8 @@
             var solutionDirectoryName = Path.GetDirectoryName(TestSolution);
 
             solutionFilterFile.SolutionFilter.Projects.Should()
-                .HaveCount(results.Length)
-                .And.Contain(results.Select(p => Path.GetRelativePath(solutionDirectoryName, p)));
+                .HaveCount(results.Count)
+                .And.Contain(results.Select(p => Path.GetRelativePath(solutionDirectoryName!, p)));
         }
     }
 }
